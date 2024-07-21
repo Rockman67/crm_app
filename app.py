@@ -1,12 +1,9 @@
-import sys
-import os
+from flask import Flask
+from crm_app.config import Config
+from crm_app.routes import main
 
-# Добавляем путь к корневой директории проекта
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+app = Flask(__name__)
+app.config.from_object(Config)
 
-from crm_app import create_app
-
-app = create_app()
-
-if __name__ == "__main__":
-    app.run(debug=True)
+# Пример использования Blueprint
+app.register_blueprint(main)
