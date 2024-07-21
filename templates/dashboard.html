@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+<h1>Dashboard</h1>
+<p>Welcome to the dashboard, {{ current_user.email }}.</p>
+<h2>Leads</h2>
+<ul>
+    {% for lead in leads %}
+    <li>{{ lead.name }} - {{ lead.email }} - {{ lead.phone }} - {{ lead.message }}
+        <a href="{{ url_for('auth.edit_lead', lead_id=lead.id) }}" class="btn">Edit</a>
+        <form method="POST" action="{{ url_for('auth.delete_lead', lead_id=lead.id) }}" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this lead?');">
+            <button type="submit" class="btn">Delete</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+<a href="{{ url_for('auth.add_lead') }}">Add Lead</a>
+<h2>Action Logs</h2>
+<ul>
+    {% for log in action_logs %}
+    <li>{{ log.timestamp }} - {{ log.action }} {% if log.lead %}(Lead: {{ log.lead.name }}){% endif %}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

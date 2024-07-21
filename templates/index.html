@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+<h1>Welcome to the CRM App</h1>
+<p>Please <a href="{{ url_for('auth.login') }}" class="btn">Login</a> or <a href="{{ url_for('auth.register') }}" class="btn">Register</a></p>
+{% endblock %}

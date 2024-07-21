@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Lead</title>
+</head>
+<body>
+    <h1>Add Lead</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <label for="name">Name:</label>
+        {{ form.name }}
+        <br>
+        <label for="email">Email:</label>
+        {{ form.email }}
+        <br>
+        <label for="phone">Phone:</label>
+        {{ form.phone }}
+        <br>
+        <label for="message">Message:</label>
+        {{ form.message }}
+        <br>
+        {{ form.submit }}
+    </form>
+</body>
+</html>

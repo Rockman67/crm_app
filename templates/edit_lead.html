@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}
+Edit Lead
+{% endblock %}
+
+{% block content %}
+<h1>Edit Lead</h1>
+<form method="POST" action="{{ url_for('auth.edit_lead', lead_id=lead.id) }}">
+    {{ form.hidden_tag() }}
+    <input type="text" name="name" placeholder="Name" class="form-control" value="{{ form.name.data }}" required>
+    <input type="email" name="email" placeholder="Email" class="form-control" value="{{ form.email.data }}" required>
+    <input type="text" name="phone" placeholder="Phone" class="form-control" value="{{ form.phone.data }}" required>
+    <textarea name="message" placeholder="Message" class="form-control" required>{{ form.message.data }}</textarea>
+    <button type="submit" class="btn">Update Lead</button>
+</form>
+{% endblock %}
