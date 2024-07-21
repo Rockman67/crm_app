@@ -31,6 +31,9 @@ jobs:
       run: |
         echo "PYTHONPATH=$PYTHONPATH:/home/runner/work/crm_app" >> $GITHUB_ENV
 
+    - name: Print PYTHONPATH
+      run: echo $PYTHONPATH
+
     - name: Run tests
       run: |
         source venv/bin/activate
