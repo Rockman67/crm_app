@@ -1,5 +1,6 @@
 import unittest
 from crm_app.app import app  # Убедитесь, что путь правильный
+from crm_app.auth.routes import main  # Убедитесь, что путь правильный
 
 class BasicTests(unittest.TestCase):
 
