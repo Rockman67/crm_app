@@ -20,4 +20,5 @@ wtforms==3.1.2
 zipp==3.19.2
 Flask
 pytest
+flask_migrate
 # добавьте сюда другие зависимости вашего проекта
