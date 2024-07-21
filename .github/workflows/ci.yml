@@ -3,10 +3,10 @@ name: CI
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   build:
@@ -26,6 +26,10 @@ jobs:
         python -m venv venv
         source venv/bin/activate
         pip install -r requirements.txt
+
+    - name: Set PYTHONPATH
+      run: |
+        echo "PYTHONPATH=$PYTHONPATH:/home/runner/work/crm_app" >> $GITHUB_ENV
 
     - name: Run tests
       run: |
