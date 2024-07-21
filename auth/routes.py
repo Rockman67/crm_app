@@ -1,34 +1,16 @@
-# crm_app/auth/routes.py
+from flask import Blueprint, render_template, redirect, url_for
+from crm_app.forms import RegistrationForm  # Убедитесь, что путь правильный
 
-from flask import Blueprint, render_template, redirect, url_for, flash, request
-from crm_app.models import User
-from crm_app import db
-from werkzeug.security import generate_password_hash, check_password_hash
+main = Blueprint('main', __name__)
 
-auth = Blueprint('auth', __name__)
+@main.route('/')
+def home():
+    return render_template('home.html')
 
-@auth.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        email = request.form['email']
-        password = request.form['password']
-        user = User.query.filter_by(email=email).first()
-        if user and user.verify_password(password):
-            flash('Logged in successfully!', 'success')
-            return redirect(url_for('main.index'))
-        else:
-            flash('Login failed. Check your email and password.', 'danger')
-    return render_template('login.html')
-
-@auth.route('/register', methods=['GET', 'POST'])
+@main.route('/register', methods=['GET', 'POST'])
 def register():
-    if request.method == 'POST':
-        email = request.form['email']
-        password = request.form['password']
-        user = User(email=email)
-        user.set_password(password)
-        db.session.add(user)
-        db.session.commit()
-        flash('Registration successful!', 'success')
-        return redirect(url_for('auth.login'))
-    return render_template('register.html')
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        # Логика регистрации
+        return redirect(url_for('main.home'))
+    return render_template('register.html', form=form)
